@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Input } from '@mui/material';
 import { NameAndUrl } from '../Types/PokeTypes';
+import axios from 'axios';
 
 
 interface PokeListProps {
@@ -15,6 +16,12 @@ const PokeList = (props: PokeListProps) => {
   const [displayPage, setDisplayPage] = useState(0);
   const [selectedPokemon, setSelectedPokemon] = useState<any>({});
 
+
+  useEffect(() => {
+    axios.get('http://localhost:3005/pokemon').then(res => {
+      console.log(res);
+    })
+  }, [])
 
 
   
