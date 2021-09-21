@@ -1,0 +1,26 @@
+version: "3.5"
+
+services:
+  nestjs:
+    build:
+      context: ./packages/nest-poke-test-backend
+      dockerfile: Dockerfile.dev
+    env_file:
+     - ./packages/nest-poke-test-backend/.env.dev
+    ports:
+      - 3005:3005
+    volumes:
+      - ./packages/nest-poke-test-backend/:/app
+      - /app/node_modules
+
+  react_app:
+    build:
+      context: ./packages/nest-poke-test-frontend
+      dockerfile: Dockerfile.dev
+    env_file:
+     - ./packages/nest-poke-test-frontend/.env.dev
+    ports:
+      - 3000:3000
+    volumes:
+      - ./packages/nest-poke-test-frontend/:/app
+      - /app/node_modules
